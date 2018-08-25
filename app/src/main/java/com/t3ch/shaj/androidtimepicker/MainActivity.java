@@ -28,7 +28,29 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String time = timePicker.getCurrentHour()+":"+timePicker.getCurrentMinute();
+
+
+                int hour = timePicker.getCurrentHour();
+                int min = timePicker.getCurrentMinute();
+
+                String format;
+
+                if (hour == 0) {
+                    hour += 12;
+                    format = "AM";
+                } else if (hour == 12) {
+                    format = "PM";
+                } else if (hour > 12) {
+                    hour -= 12;
+                    format = "PM";
+                } else {
+                    format = "AM";
+                }
+
+
+
+
+                String time = hour + ":" + min + " " + format;
                 textView.setText(time);
 
             }
